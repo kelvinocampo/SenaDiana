@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperMercado</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../Css/style.css">
+
+    <!-- productos -->
+    <script src="../Script/Products.js"></script>
+</head>
+
+<body>
+    <nav>
+        <button>
+            <a href="">SuperMercado</a>
+        </button>
+
+        <button>
+            <a href="Products.html">Products</a>
+        </button>
+        <button id="boxes">Cajas</button>
+
+    </nav>
+
+    <main id="main">
+
+        <div id="admin">
+            <div class="box">
+                <button class="close">Close</button>
+            </div>
+            <div class="box">
+                <button class="close">Close</button>
+            </div>
+            <div class="box">
+                <button class="close">Close</button>
+            </div>
+        </div>
+
+        <div class="container-message">
+            <div class="message" id="message"></div>
+        </div>
+        
+        <div class="form">
+            <select name="product" id="product" required>
+                <option value="" disabled selected>Selecciona un producto</option>
+            </select>
+            <select name="box" id="box" required>
+                <option value="" disabled selected>Selecciona un Punto de Pago</option>
+                <option value="box1">Caja 1</option>
+                <option value="box2">Caja 2</option>
+                <option value="box3">Caja 3</option>
+            </select>
+            <input type="number" placeholder="Cantidad" name="cant" id="cant" required>
+            <button id="submit">Agregar</button>
+            <button id="pago">Finalizar Compra</button>
+        </div>
+    </main>
+    <script src="../Script/Client.js"></script>
+</body>
+
+</html>

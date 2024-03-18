@@ -1,0 +1,4 @@
+Crear productos previamente
+
+categoria > productos
+n productos por cliente
