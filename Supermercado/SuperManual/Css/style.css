@@ -1,3 +1,184 @@
-#admin,#pago{
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+    position: relative; /* Agregado para establecer un contexto de posicionamiento */
+    z-index: 2; /* Asegurar que el nav esté encima de otros elementos */
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.act,nav button:hover {
+    background-color: #555;
+}
+
+
+.form {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form select,
+.form input[type="number"] {
+    padding: 10px;
+    margin: 5px;
+}
+
+.form button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#admin {
+    position: fixed;
+    z-index: 3; /* Mayor que el z-index del nav */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
     display: none;
 }
+
+.box {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 15% auto;
+    width: 30%;
+}
+#pago{
+    display: none;
+}
+.close {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.close:hover {
+    background-color: #ff6666;
+}
+
+.form button:hover {
+    background-color: #45a049;
+}
+
+.container-message {
+    display: none; /* Ocultar el contenedor de mensajes por defecto */
+    position: fixed; /* Cambiar a posición fija */
+    z-index: 3; /* Mayor que el z-index del nav */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%; /* Altura máxima igual a la del padre */
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto; /* Permitir desplazamiento vertical si es necesario */
+}
+
+/* Ajustes para el mensaje dentro del contenedor de mensajes */
+.message {
+    position: fixed; /* Cambiar a posición fija */
+    z-index: 4; /* Mayor que el z-index del nav y del contenedor */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Ancho del contenedor */
+    max-width: 600px; /* Ancho máximo para evitar que se extienda demasiado */
+    max-height: 80vh; /* Altura máxima para permitir desplazamiento */
+    padding: 20px;
+    overflow: auto; /* Permitir desplazamiento vertical */
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para la tabla de reporte dentro del contenedor de mensajes */
+.message table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.message th,
+.message td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.message th {
+    background-color: #f2f2f2;
+}
+
+.message p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.message p.total {
+    font-weight: bold;
+}
+
+.container-message button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    width: 200px;
+    height: auto;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.container-message button:hover {
+    background-color: #45a049;
+}
+
+

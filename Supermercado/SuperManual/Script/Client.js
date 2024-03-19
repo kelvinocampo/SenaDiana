@@ -6,10 +6,11 @@ var HISTORY = {
     box3: [],
 };
 let selectedProducts = [];
+let messageContainer = document.querySelector('.container-message');
+let btnMessage = document.querySelector('.container-message button');
 let message = document.getElementById('message');
 let pago = document.getElementById('pago');
 let boxes = document.getElementById('boxes');
-let btnsClose = document.getElementsByClassName('close')
 
 //inputs
 let cant = document.getElementById('cant');
@@ -18,9 +19,18 @@ let box = document.getElementById('box');
 let submit = document.getElementById('submit');
 
 //listos
+function Discount() {
+    let random = Rand(0, products.length - 1);
+    let discount = Rand(1, 100);
+    products[random].precio -= ((products[random].precio * discount) / 100);
+    products[random]['descuento'] = ' - ' + discount + '%'
+}
+Discount();
+
 function AddProductForm() {
     for (let i = 0; i < products.length; i++) {
-        let option = `<option value="${products[i].nombre}">${products[i].nombre}</option>`;
+        let = descuento = products[i].descuento || ''
+        let option = `<option value="${products[i].nombre}">${products[i].nombre}  $${products[i].precio}${descuento}</option>`;
         selProd.innerHTML += option;
     }
 }
@@ -29,13 +39,6 @@ AddProductForm();
 function Rand(min, max) {
     return Math.floor(Math.random() * ((max + 1) - min) + min);
 }
-
-function Discount() {
-    let random = Rand(0, products.length - 1);
-    let discount = Rand(1, 100);
-    products[random].precio -= ((products[random].precio * discount) / 100);
-}
-Discount();
 
 submit.onclick = () => {
     if (selProd.value === '' || cant.value === '' || box.value === '') {
@@ -51,14 +54,17 @@ pago.onclick = () => {
     }
 };
 
+btnMessage.onclick = () => {
+    messageContainer.style.display = 'none'
+};
+
 function AddProducts() {
     let product = products.find((item) => item.nombre === selProd.value);
     for (let i = 0; i < parseInt(cant.value); i++) {
         selectedProducts.push(product);
     }
     let priceProd = (parseInt(cant.value) * product.precio);
-    HISTORY[box.value].push(priceProd);
-    pago.style.display='block'
+    pago.style.display = 'inline-block'
 }
 
 function Pago() {
@@ -93,32 +99,17 @@ function Pago() {
     for (let i = 0; i < selectedProducts.length; i++) {
         total += selectedProducts[i].precio;
     }
+    HISTORY[box.value].push(total + (total * IVA));
     report += `</tbody></table>`;
-    report += `<p>El cliente debe cancelar :${total+(total*IVA)} </p>`
+    report += `<p>El cliente debe cancelar : $${total + (total * IVA)} </p>`
     message.innerHTML = report;
+    messageContainer.style.display = 'flex'
+    pago.style.display = 'none'
     selectedProducts = []
 }
 
-let countBoxOff = 0
-function CloseBox() {
-    for (let i = 0; i < btnsClose.length; i++) {
-        btnsClose[i].onclick = () => {
-            countBoxOff += 1;
-            btnsClose[i].innerHTML = 'Closed'; // Cambia 'Closed' por el contenido deseado para el botón de cierre
-            if (countBoxOff == 3) {
-                Reporte();
-            }
-        }
-    }
-}
-CloseBox()
-
 boxes.onclick = () => {
-    Admin()
-}
-
-function Admin() {
-    document.getElementById('admin').style.display = 'block'
+    Reporte()
 }
 
 function ReduceBox(box) {
@@ -133,4 +124,8 @@ function Reporte() {
     let content = `Caja 1 : $` + ReduceBox(HISTORY.box1) + '<br>Caja 2 : $' + ReduceBox(HISTORY.box2) +
         '<br>Caja 3 : $' + ReduceBox(HISTORY.box3) + '<br>Total de Ventas Hoy es : $' + total
     message.innerHTML = content
+    messageContainer.style.display = 'flex'
+    btnMessage.onclick = () => {
+        location.reload()
+    }
 }

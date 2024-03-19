@@ -1,13 +1,12 @@
 var products = JSON.parse(localStorage.getItem('Products'));
-var main = document.querySelector('main')
+var tbody = document.querySelector('tbody')
 
 for(let i = 0;i<products.length;i++){
     let product=products[i]
-    let div = document.createElement('div')
-    div.classList.add('product')
-    div.innerHTML=`<p>${product.nombre}</p>
-    <p> Categoria : ${product.categoria}</p>
-    <p> Codigo : ${product.codigo}</p>
-    <p>$${product.precio}</p>`
-    main.appendChild(div)
+    let tr = document.createElement('tr')
+    tr.innerHTML=`<td>${product.nombre}</td>
+    <td>${product.codigo}</td>
+    <td>${product.categoria}</td>
+    <td>$${product.precio}</td>`
+    tbody.appendChild(tr)
 }

@@ -36,7 +36,7 @@ function Client() {
     });
     let prices = 0
     for (let i = 0; i < selProd.length; i++) {
-        prices += selProd[i].precio - (selProd[i].precio)
+        prices += selProd[i].precio 
     }
     prices-=(prices*IVA)
     HISTORY[('box' + (box + 1))].push(prices)
@@ -53,7 +53,7 @@ btnAuto.onclick = () => {
             Client()
         }, 10000);
         click = true;
-        btnAuto.style.background = 'blue';
+        btnAuto.style.background = 'lightblue';
         btnAuto.innerHTML = 'Terminar Dia'
     } else {
         clearInterval(clientInt);
